@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Centro } from '../../domain/centro';
 import { Http, Headers} from '@angular/http';
-import 'rxjs/Rx';
-
 
 @Injectable()
 export class CentrosService {

@@ -56,8 +56,8 @@ export class CentrosComponent implements OnInit {
 
     this.loaderService.push();
     this.CentrosSub = this.centrosService.findAll().subscribe(data => {
-      for(let id in data) {
-        let elem:Centro = data[id];
+      for (const id in data) {
+        const elem: Centro = data[id];
         elem.id = id;
         this.centros.push(elem);
       }
