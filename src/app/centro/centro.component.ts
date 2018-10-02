@@ -60,11 +60,10 @@ export class CentroComponent {
     }
   }
 
-  guardarCambios() {
+  save() {
     console.log(this.form);
 
     this.centro = this.form.value;
-    this.centro.activo = this.centro.activo === true;
     console.log(this.centro);
     this._centrosService.save(this.centro, this.id).subscribe(
       data => {
@@ -73,7 +72,7 @@ export class CentroComponent {
       error => console.log(error));
   }
 
-  eliminar() {
+  delete() {
     if (this.id) {
       this.centro = this._centrosService.delete(this.id).subscribe(
         data => {

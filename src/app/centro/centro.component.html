@@ -1,6 +1,6 @@
 <div class="example-container">
   <mat-card>
-    <form [formGroup]="form" (ngSubmit)='guardarCambios()' novalidate="novalidate">
+    <form [formGroup]="form" (ngSubmit)='save()' novalidate="novalidate">
       <div class="mat-field">
         <mat-form-field>
           <input matInput placeholder="Name" formControlName="nombre" required>
@@ -26,7 +26,7 @@
     </form>
     <div> 
         <button type="button" mat-stroked-button class="mat-warn" [routerLink]="['/centros']">Back</button>
-        <button  mat-raised-button class="mat-primary" (click)='guardarCambios()' [disabled]="!this.form.valid">
+        <button  mat-raised-button class="mat-primary" (click)='save()' [disabled]="!this.form.valid">
           {{ "nuevo" ? "Save": "Update" }}
         </button>
         <!-- <button *ngIf="!nuevo" mat-raised-button class="mat-warn" (click)='eliminar()'>Delete</button>  -->

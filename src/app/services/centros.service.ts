@@ -11,7 +11,7 @@ export class CentrosService {
   centroURL = "https://angularabm.firebaseio.com/centros";
 
 
-  findAll(query: any): any {
+  findAll(query?: any): any {
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -24,14 +24,14 @@ export class CentrosService {
 
   constructor(private http: Http) { }
 
-  save (centro: Centro, key$: string) {
+  save (centro: Centro, id: string) {
     const body = JSON.stringify(centro);
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
 
-    if (key$ !== "0") {
-      return this.http.put(`${ this.centroURL }/${ key$ }.json`, body, { headers }).map( res => {
+    if (id !== "0") {
+      return this.http.put(`${ this.centroURL }/${ id }.json`, body, { headers }).map( res => {
         console.log(res.json());
         return res.json();
       });

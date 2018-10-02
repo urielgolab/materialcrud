@@ -34,7 +34,7 @@ export class CentrosComponent implements OnInit {
 
   ngOnInit() {
     this.setColumns();
-    this.buscar();
+    this.find();
   }
 
   setColumns () {
@@ -50,15 +50,15 @@ export class CentrosComponent implements OnInit {
     ];
   }
 
-  public buscar() {
+  public find() {
     this.dataSource.data = [];
     this.centros = [];
 
     this.loaderService.push();
-    this.CentrosSub = this.centrosService.findAll(null).subscribe(data => {
-      for(let key$ in data) {
-        let elem:Centro = data[key$];
-        elem.key$ = key$;
+    this.CentrosSub = this.centrosService.findAll().subscribe(data => {
+      for(let id in data) {
+        let elem:Centro = data[id];
+        elem.id = id;
         this.centros.push(elem);
       }
 
@@ -73,13 +73,13 @@ export class CentrosComponent implements OnInit {
 
   onCentroSelected(centro: Centro) {
     if (centro) {
-      this.router.navigate(['/centro/' + centro.key$]);
+      this.router.navigate(['/centro/' + centro.id]);
     }
   }
 
-  private editar(centro: Centro) {
+  private edit(centro: Centro) {
     if (centro) {
-      this.router.navigate(['/centro/' + centro.key$]);
+      this.router.navigate(['/centro/' + centro.id]);
     }
   }
 
@@ -88,12 +88,12 @@ export class CentrosComponent implements OnInit {
     this.router.navigate(['centro/0']);
   }
 
-  private eliminar(centro: Centro) {
+  private delete(centro: Centro) {
     if (confirm("Are you sure?")) {
-      this.centrosService.delete(centro.key$).subscribe(
+      this.centrosService.delete(centro.id).subscribe(
         data => {
           console.log(data);
-          this.buscar();
+          this.find();
         },
         error => console.log(error));
     }

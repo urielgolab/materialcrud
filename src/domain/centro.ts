@@ -1,5 +1,5 @@
-export interface Centro {
-    key$?: string;
+export class Centro {
+    id?: string;
     nombre: string;
     activo: boolean;
     descripcion: string;
