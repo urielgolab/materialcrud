@@ -84,8 +84,8 @@ export class CentrosComponent implements OnInit {
   }
 
 
-  private nuevo() {
-    this.router.navigate(['centro/0']);
+  private new() {
+    this.router.navigate(['centro/']);
   }
 
   private delete(centro: Centro) {

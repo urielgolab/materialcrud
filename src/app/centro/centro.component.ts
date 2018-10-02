@@ -33,7 +33,7 @@ export class CentroComponent {
 
     this.route.params.subscribe( params => {
         this.id = params['id'];
-        if (this.id !== "0") {
+        if (this.id) {
           this._centrosService.get(this.id).subscribe( data => {
             this.centro = data;
             this.form.patchValue(this.centro);
@@ -48,9 +48,9 @@ export class CentroComponent {
     this.nuevo = this.id === "0";
   }
 
-  get(key$: string) {
-    if (key$) {
-      this.centro = this._centrosService.get(key$).subscribe(
+  get(id: string) {
+    if (id) {
+      this.centro = this._centrosService.get(id).subscribe(
         data => {
           console.log(data);
           this.form.setValue(data);

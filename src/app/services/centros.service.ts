@@ -30,7 +30,7 @@ export class CentrosService {
       'Content-Type': 'application/json'
     });
 
-    if (id !== "0") {
+    if (id) {
       return this.http.put(`${ this.centroURL }/${ id }.json`, body, { headers }).map( res => {
         console.log(res.json());
         return res.json();
