@@ -1,0 +1,26 @@
+<div class="mat-elevation-z3">
+    <div *ngIf="filter" class="filter-table">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
+        </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="rows" matSort [trackBy]="myTrackById" [matSortActive]="sortCol" [matSortDirection]="sortDirection">
+
+        <!-- Generic column definition -->
+
+        <ng-container *ngFor="let col of columns" [matColumnDef]="col.prop">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [style.flex]="(col.width)?'0 0 '+col.width: null">{{ col.name }}</mat-header-cell>
+            <mat-cell  *matCellDef="let row" [style.flex]="(col.width)?'0 0 '+col.width: null"  [title]="getCellValue(col,row, true)">
+                <span *ngIf="!col.cellTemplate" [innerHTML]="getCellValue(col,row)"></span>
+                <ng-container *ngIf="col.cellTemplate" [ngTemplateOutlet]="col.cellTemplate" [ngTemplateOutletContext]="{ row: row }"></ng-container> 
+            </mat-cell>
+        </ng-container>
+        <ng-content></ng-content>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClick($event, row)" (dblclick)="onDblClick($event, row)" [ngClass]="{'row-seleccionado': selected == row}"></mat-row>
+    </mat-table>
+    <div *ngIf="showSinResultados()" class="sin-resultados" >Sin datos para mostrar</div>
+    <mat-paginator *ngIf="pagination" [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" #paginator></mat-paginator>
+
+</div>

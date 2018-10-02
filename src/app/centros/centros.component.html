@@ -1,0 +1,22 @@
+<mat-card>
+  <material-table 
+    [rows]="dataSource" 
+    [selected]="centro" 
+    (dblClick)="onCentroSelected($event)"
+    [columns]="cols" 
+    [filter]="false" 
+    [pagination]="false"
+    [sortCol]="'fechaAparicion'" 
+    [sortDirection]="'desc'">
+  </material-table>   
+  
+  <button mat-fab class="btn-nuevo" (click)="nuevo()">
+      <i class="fa fa-plus"></i>
+  </button>
+</mat-card>
+<ng-template #columnEdit let-row="row">
+    <mat-icon (click)="editar(row)">edit</mat-icon>
+</ng-template>
+<ng-template #columnDelete let-row="row">
+    <mat-icon (click)="eliminar(row)">delete</mat-icon>
+</ng-template>

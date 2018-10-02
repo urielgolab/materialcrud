@@ -1,0 +1,35 @@
+<div class="example-container">
+  <mat-card>
+    <form [formGroup]="form" (ngSubmit)='guardarCambios()' novalidate="novalidate">
+      <div class="mat-field">
+        <mat-form-field>
+          <input matInput placeholder="Name" formControlName="nombre" required>
+          <mat-error *ngIf="this.form.get('nombre').errors?.required">The name is mandatory</mat-error>
+          <mat-error *ngIf="this.form.get('nombre').errors?.minlength">At least 5 characters</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="mat-field">
+        <mat-checkbox class="example-margin" formControlName="activo">Active</mat-checkbox>
+      </div>
+      <div class="mat-field">
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Comments" formControlName="descripcion"></textarea>
+        </mat-form-field>
+      </div>
+      <!-- <div>
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Elegir una fecha">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>        
+        </mat-form-field>
+      </div> -->
+    </form>
+    <div> 
+        <button type="button" mat-stroked-button class="mat-warn" [routerLink]="['/centros']">Back</button>
+        <button  mat-raised-button class="mat-primary" (click)='guardarCambios()' [disabled]="!this.form.valid">
+          {{ "nuevo" ? "Save": "Update" }}
+        </button>
+        <!-- <button *ngIf="!nuevo" mat-raised-button class="mat-warn" (click)='eliminar()'>Delete</button>  -->
+    </div>
+  </mat-card>
+</div>

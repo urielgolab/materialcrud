@@ -1,0 +1,89 @@
+
+  
+  .mat-header-cell.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .mat-header-row {
+    min-height: 35px;
+}
+
+.mat-row {
+  min-height: 30px;
+}
+.form-group-btn{
+  padding-top: 21px;
+}
+
+.filter-table {
+    min-height: 64px;
+    padding: 8px 24px 0;
+    background-color: #fafafa;
+  }
+
+  .row-seleccionado {
+      background-color: rgb(41, 182, 246);
+  }
+
+  .sin-resultados{
+    min-height: 30px;
+    background-color: #fff;
+    padding-left: 30px;
+    padding-top: 6px;
+  }
+
+/deep/.mat-cell mat-icon {
+  font-size: 18px;
+  width: auto;
+  height: auto;
+  vertical-align: middle;
+  color: #585858;
+  cursor: pointer;
+}
+
+.mat-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/deep/ .mat-paginator-container {
+  max-height: 28px;
+  min-height: 0px!important;
+  font-size: 0.8vw;
+}
+
+:host /deep/.mat-sort-header-button, mat-row span {
+  font-size: 12px;
+}
+
+@media all and (max-width: 724px) {
+  /deep/ .mat-paginator-container { 
+    font-size: 11px;
+  }
+}
+
+
+@media all and (min-width: 1400px) {
+  /deep/ .mat-paginator-container {
+    max-height: 45px;
+  }
+}
+
+
+@media all and (max-width: 1400px) {
+  :host /deep/.mat-sort-header-button, mat-row span {
+    font-size: 11px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  mat-header-row, .mat-row {
+    padding: 0!important;
+  }
+  
+  :host /deep/.mat-sort-header-button, mat-row span {
+    font-size: 10px!important;
+  }
+  
+}
