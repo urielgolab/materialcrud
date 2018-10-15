@@ -7,17 +7,17 @@
     "callable-types": true,
     "class-name": true,
     "comment-format": [
-      true,
+      false,
       "check-space"
     ],
     "curly": true,
     "deprecation": {
       "severity": "warn"
     },
-    "eofline": true,
+    "eofline": false,
     "forin": false,
     "import-blacklist": [
-      true,
+      false,
       "rxjs",
       "rxjs/Rx"
     ],

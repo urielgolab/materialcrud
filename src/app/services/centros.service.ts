@@ -16,7 +16,6 @@ export class CentrosService {
     });
 
     return this.http.get(this.centrosURL, { headers } ).map( res => {
-      console.log(res.json());
       return res.json();
     });
   }
@@ -31,12 +30,10 @@ export class CentrosService {
 
     if (id) {
       return this.http.put(`${ this.centroURL }/${ id }.json`, body, { headers }).map( res => {
-        console.log(res.json());
         return res.json();
       });
     } else {
       return this.http.post(this.centrosURL, body, { headers }).map( res => {
-        console.log(res.json());
         return res.json();
       });
     }
@@ -48,7 +45,6 @@ export class CentrosService {
     });
 
     return this.http.get(`${ this.centroURL }/${id}.json`, { headers }).map( res => {
-      console.log(res.json());
       return res.json();
     });
   }
@@ -59,7 +55,6 @@ export class CentrosService {
     });
 
     return this.http.delete(`${ this.centroURL }/${id}.json`, { headers }).map( res => {
-      console.log(res.json());
       return res.json();
     });
   }

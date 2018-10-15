@@ -8,7 +8,9 @@ import { AppComponent } from './app.component';
 import { CentrosComponent } from './centros/centros.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatIconModule, MatDatepickerModule, MatInputModule } from '@angular/material';
+import {
+  MatButtonModule, MatCheckboxModule, MatIconModule, MatDatepickerModule,
+  MatInputModule, MatDialogModule, MatListModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 
@@ -26,28 +28,35 @@ import { CentrosService } from "./services/centros.service";
 import { CentroComponent } from './centro/centro.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ItemComponent } from './item/item.component';
+
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [
     AppComponent,
     CentrosComponent,
     ToolbarComponent,
-    CentroComponent
+    CentroComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatButtonModule, MatCheckboxModule, MatIconModule, MatDatepickerModule, MatInputModule,
+    MatButtonModule, MatCheckboxModule, MatIconModule, MatDatepickerModule, MatInputModule, MatDialogModule, MatListModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     LoaderModule.forRoot(),
     SharedModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    DragulaModule.forRoot()
   ],
   providers: [ CentrosService ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ ItemComponent ],
+  exports: [ItemComponent]
 })
 export class AppModule { }

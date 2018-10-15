@@ -30,6 +30,7 @@
     "moment": "^2.16.0",
     "mydatepicker": "^2.6.3",
     "ng-pick-datetime": "^5.2.6",
+    "ng2-dragula": "^2.1.0",
     "ng2-toastr": "^4.1.2",
     "ngx-bootstrap": "^2.0.4",
     "ngx-mat-select-search": "^1.2.0",

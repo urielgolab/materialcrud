@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
-import { MatButton  } from "@angular/material";
-import {Observable} from 'rxjs/rx';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { MatDialog } from "@angular/material";
+import { Observable } from 'rxjs/rx';
 import { CentrosService } from "../services/centros.service";
 import { Centro } from '../../domain/centro';
-import {Router, ActivatedRoute} from '@angular/router';
+import { Item } from '../../domain/item';
+import { Router, ActivatedRoute} from '@angular/router';
+import { ItemComponent } from "../item/item.component";
 
 @Component({
   selector: 'app-centro',
@@ -12,18 +14,28 @@ import {Router, ActivatedRoute} from '@angular/router';
   styleUrls: ['./centro.component.css']
 })
 export class CentroComponent {
+  centro: Centro = {
+    nombre: "",
+    activo: true,
+    descripcion: "",
+    dateCreated: new Date(),
+    items: []
+  };
   form: FormGroup;
   id: string;
   nuevo: boolean;
 
-  private centro: Centro = {
-    nombre: "",
-    activo: true,
-    descripcion: "",
-    fechaAlta: new Date()
-  };
 
-  constructor(private _centrosService: CentrosService, private router: Router, private route: ActivatedRoute) {
+  private testItems: Item[] = [
+    { name: "Name1", title: "Title1", dateCreated: new Date() },
+    { name: "Name2", title: "Title2", dateCreated: new Date() }
+  ];
+
+  constructor(
+    private _centrosService: CentrosService,
+    private router: Router,
+    private route: ActivatedRoute,
+    public dialog: MatDialog) {
     this.form = new FormGroup({
       'nombre': new FormControl('', [Validators.required, Validators.minLength(5)]),
       'activo': new FormControl(''),
@@ -35,8 +47,10 @@ export class CentroComponent {
         this.id = params['id'];
         if (this.id) {
           this._centrosService.get(this.id).subscribe( data => {
-            this.centro = data;
+            Object.assign(this.centro, data);
             this.form.patchValue(this.centro);
+
+            console.log(this.centro);
           },
           error => console.log(error));
         } else {
@@ -45,29 +59,13 @@ export class CentroComponent {
       }
     );
 
-    this.nuevo = this.id === "0";
-  }
-
-  get(id: string) {
-    if (id) {
-      this.centro = this._centrosService.get(id).subscribe(
-        data => {
-          console.log(data);
-          this.form.setValue(data);
-          // this.router.navigate(['/centro', data.name]);
-        },
-        error => console.log(error));
-    }
+    this.nuevo = this.id === null;
   }
 
   save() {
-    console.log(this.form);
-
     this.centro = this.form.value;
-    console.log(this.centro);
     this._centrosService.save(this.centro, this.id).subscribe(
       data => {
-        console.log(data);
       },
       error => console.log(error));
   }
@@ -76,10 +74,26 @@ export class CentroComponent {
     if (this.id) {
       this.centro = this._centrosService.delete(this.id).subscribe(
         data => {
-          console.log(data);
           this.router.navigate(['centros']);
         },
         error => console.log(error));
     }
+  }
+
+  addItem() {
+    console.log("hola:", this.centro);
+    const dialogRef = this.dialog.open(ItemComponent, {
+      width: '300px',
+      data: { order: 1 } //(this.centro == null || this.centro.items === null ? 0 : this.centro.items.length) +
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+        console.log(this.centro);
+
+        if (result) {
+          this.centro.items.push(result);
+        }
+    });
   }
 }
