@@ -7,6 +7,8 @@ import { Entity } from '../../domain/entity';
 import { Item } from '../../domain/item';
 import { Router, ActivatedRoute} from '@angular/router';
 import { ItemComponent } from "../item/item.component";
+import { DragulaService } from 'ng2-dragula';
+
 
 @Component({
   selector: 'app-entity',
@@ -26,10 +28,17 @@ export class EntityComponent {
   nuevo: boolean;
 
   constructor(
-    private _entitiesService: EntitiesService,
-    private router: Router,
-    private route: ActivatedRoute,
-    public dialog: MatDialog) {
+      private _entitiesService: EntitiesService,
+      private router: Router,
+      private route: ActivatedRoute,
+      private dragulaService: DragulaService,
+      public dialog: MatDialog) {
+
+    dragulaService.destroy("items");
+    dragulaService.createGroup("items", {
+      removeOnSpill: true
+    });
+
     this.form = new FormGroup({
       'name': new FormControl('', [Validators.required, Validators.minLength(5)]),
       'active': new FormControl(''),
