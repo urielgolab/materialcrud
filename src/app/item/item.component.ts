@@ -29,14 +29,13 @@ export class ItemComponent {
     required: false,
     active: true,
     readOnly: false,
-    order: 0
+    order: null
   };
 
 
   constructor(
     public dialogRef: MatDialogRef<ItemComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Item) {
-
+    @Inject(MAT_DIALOG_DATA) public data?: Item) {
       this.form = new FormGroup({
         'name': new FormControl('', [Validators.required, Validators.minLength(5)]),
         'title': new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -44,10 +43,14 @@ export class ItemComponent {
         'active': new FormControl(''),
         'readOnly': new FormControl(''),
         'requiered': new FormControl(''),
-        'description': new FormControl('')
+        'description': new FormControl(''),
+        'order': new FormControl(''),
         // 'fechaAlta': new FormControl('', [Validators.required])
       });
 
+
+      Object.assign(this.item, data);
+      this.form.patchValue(this.item);
     }
 
   onNoClick(): void {

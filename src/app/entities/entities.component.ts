@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Centro } from '../../domain/centro';
-import { CentrosService } from "../services/centros.service";
+import { Entity } from '../../domain/entity';
+import { EntitiesService } from "../services/entities.service";
 import { MatTableDataSource } from '@angular/material';
 import { MaterialTableColumn } from '../shared/material-table/material-table.component';
 import { Subscription } from 'rxjs/Subscription';
@@ -11,24 +11,24 @@ import { LoaderService } from '../shared/loader/loader.service';
 import * as Moment from 'Moment';
 
 @Component({
-  selector: 'app-centros',
-  templateUrl: './centros.component.html',
-  styleUrls: ['./centros.component.css']
+  selector: 'app-entities',
+  templateUrl: './entities.component.html',
+  styleUrls: ['./entities.component.css']
 })
-export class CentrosComponent implements OnInit {
+export class EntitiesComponent implements OnInit {
 
-  centros: Centro[] = [];
-  centro: Centro = null;
+  entities: Entity[] = [];
+  entity: Entity = null;
   @ViewChild('columnDelete') columnDelete: TemplateRef<any>;
   @ViewChild('columnEdit') columnEdit: TemplateRef<any>;
 
-  dataSource: MatTableDataSource<Centro> = new MatTableDataSource();
+  dataSource: MatTableDataSource<Entity> = new MatTableDataSource();
   cols: MaterialTableColumn[];
-  CentrosSub: Subscription;
+  EntitiesSub: Subscription;
 
   constructor(
     private router: Router,
-    private centrosService: CentrosService,
+    private entitiesService: EntitiesService,
     private loaderService: LoaderService
   ) { }
 
@@ -40,10 +40,10 @@ export class CentrosComponent implements OnInit {
   setColumns () {
     this.cols = [
       { prop: 'key', name: '#', width: '60px'},
-      { prop: 'nombre', name: 'Name', width: '120px'},
-      { prop: 'activo', name: 'Active', width: '60px', cellTransform: (cell, row) => row.activo ? "True" : "False"},
-      { prop: 'fechaAlta', name: 'Date Add', width: '120px',
-          cellTransform: (cell, row) => (row.fechaAlta) ? Moment(row.fechaAlta).format('DD/MM/YYYY HH:mm') : '',
+      { prop: 'name', name: 'Name', width: '120px'},
+      { prop: 'active', name: 'Active', width: '60px', cellTransform: (cell, row) => row.activo ? "True" : "False"},
+      { prop: 'dateCreated', name: 'Date created', width: '120px',
+          cellTransform: (cell, row) => (row.dateCreated) ? Moment(row.dateCreated).format('DD/MM/YYYY HH:mm') : '',
           cellOrder: (cell, row) => (cell) ? Moment(cell).format('YYYY-MM-DD HH:mm') : '' },
       { prop: 'editar', name: 'Edit', width: '40px', cellTemplate: this.columnEdit },
       { prop: 'eliminar', name: 'Delete', width: '45px', cellTemplate: this.columnDelete }
@@ -52,17 +52,17 @@ export class CentrosComponent implements OnInit {
 
   public find() {
     this.dataSource.data = [];
-    this.centros = [];
+    this.entities = [];
 
     this.loaderService.push();
-    this.CentrosSub = this.centrosService.findAll().subscribe(data => {
+    this.EntitiesSub = this.entitiesService.findAll().subscribe(data => {
       for (const id in data) {
-        const elem: Centro = data[id];
+        const elem: Entity = data[id];
         elem.id = id;
-        this.centros.push(elem);
+        this.entities.push(elem);
       }
 
-      this.dataSource.data = this.centros;
+      this.dataSource.data = this.entities;
       // this.recalculate.emit();
     }, (err) => {
       this.loaderService.pop();
@@ -71,26 +71,26 @@ export class CentrosComponent implements OnInit {
     });
   }
 
-  onCentroSelected(centro: Centro) {
-    if (centro) {
-      this.router.navigate(['/centro/' + centro.id]);
+  onEntitySelected(entity: Entity) {
+    if (entity) {
+      this.router.navigate(['/entity/' + entity.id]);
     }
   }
 
-  private edit(centro: Centro) {
-    if (centro) {
-      this.router.navigate(['/centro/' + centro.id]);
+  private edit(entity: Entity) {
+    if (entity) {
+      this.router.navigate(['/entity/' + entity.id]);
     }
   }
 
 
   private new() {
-    this.router.navigate(['centro/']);
+    this.router.navigate(['entity/']);
   }
 
-  private delete(centro: Centro) {
+  private delete(entity: Entity) {
     if (confirm("Are you sure?")) {
-      this.centrosService.delete(centro.id).subscribe(
+      this.entitiesService.delete(entity.id).subscribe(
         data => {
           console.log(data);
           this.find();

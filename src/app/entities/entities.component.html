@@ -1,8 +1,8 @@
 <mat-card>
   <material-table 
     [rows]="dataSource" 
-    [selected]="centro" 
-    (dblClick)="onCentroSelected($event)"
+    [selected]="entity"
+    (dblClick)="onEntitySelected($event)"
     [columns]="cols" 
     [filter]="false" 
     [pagination]="false"

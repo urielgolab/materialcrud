@@ -5,7 +5,7 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
-import { CentrosComponent } from './centros/centros.component';
+import { EntitiesComponent } from './entities/entities.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
@@ -24,8 +24,8 @@ import { LoaderService } from './shared/loader/loader.service';
 import { LoaderModule } from './shared/loader/loader.module';
 
 
-import { CentrosService } from "./services/centros.service";
-import { CentroComponent } from './centro/centro.component';
+import { EntitiesService } from "./services/entities.service";
+import { EntityComponent } from './entity/entity.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ItemComponent } from './item/item.component';
@@ -35,9 +35,9 @@ import { DragulaModule } from 'ng2-dragula';
 @NgModule({
   declarations: [
     AppComponent,
-    CentrosComponent,
+    EntitiesComponent,
     ToolbarComponent,
-    CentroComponent,
+    EntityComponent,
     ItemComponent
   ],
   imports: [
@@ -54,7 +54,7 @@ import { DragulaModule } from 'ng2-dragula';
     HttpModule,
     DragulaModule.forRoot()
   ],
-  providers: [ CentrosService ],
+  providers: [ EntitiesService ],
   bootstrap: [AppComponent],
   entryComponents: [ ItemComponent ],
   exports: [ItemComponent]

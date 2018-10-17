@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Centro } from '../../domain/centro';
+import { Entity } from '../../domain/entity';
 import { Http, Headers} from '@angular/http';
 import 'rxjs/Rx';
 
 @Injectable()
-export class CentrosService {
+export class EntitiesService {
 
-  centrosURL = "https://angularabm.firebaseio.com/centros.json";
-  centroURL = "https://angularabm.firebaseio.com/centros";
+  entitiesURL = "https://angularabm.firebaseio.com/entities.json";
+  entityURL = "https://angularabm.firebaseio.com/entities";
 
 
   findAll(query?: any): any {
@@ -15,25 +15,25 @@ export class CentrosService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(this.centrosURL, { headers } ).map( res => {
+    return this.http.get(this.entitiesURL, { headers } ).map( res => {
       return res.json();
     });
   }
 
   constructor(private http: Http) { }
 
-  save (centro: Centro, id: string) {
-    const body = JSON.stringify(centro);
+  save (entity: Entity, id: string) {
+    const body = JSON.stringify(entity);
     const headers = new Headers({
       'Content-Type': 'application/json'
     });
 
     if (id) {
-      return this.http.put(`${ this.centroURL }/${ id }.json`, body, { headers }).map( res => {
+      return this.http.put(`${ this.entityURL }/${ id }.json`, body, { headers }).map( res => {
         return res.json();
       });
     } else {
-      return this.http.post(this.centrosURL, body, { headers }).map( res => {
+      return this.http.post(this.entitiesURL, body, { headers }).map( res => {
         return res.json();
       });
     }
@@ -44,7 +44,7 @@ export class CentrosService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(`${ this.centroURL }/${id}.json`, { headers }).map( res => {
+    return this.http.get(`${ this.entityURL }/${id}.json`, { headers }).map( res => {
       return res.json();
     });
   }
@@ -54,7 +54,7 @@ export class CentrosService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.delete(`${ this.centroURL }/${id}.json`, { headers }).map( res => {
+    return this.http.delete(`${ this.entityURL }/${id}.json`, { headers }).map( res => {
       return res.json();
     });
   }

@@ -1,10 +1,10 @@
 import { Item } from "./item";
 
-export class Centro {
+export class Entity {
     id?: string;
-    nombre: string;
-    activo: boolean;
-    descripcion: string;
+    name: string;
+    active: boolean;
+    description: string;
     dateCreated?: Date;
     items?: Item[];
 }

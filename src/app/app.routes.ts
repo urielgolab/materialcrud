@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { CentrosComponent } from "./centros/centros.component";
-import { CentroComponent } from "./centro/centro.component";
+import { EntitiesComponent } from "./entities/entities.component";
+import { EntityComponent } from "./entity/entity.component";
 
 export const ROUTES: Routes = [
-    { path: '',  redirectTo: 'centros', pathMatch: 'full'  },
-    { path: 'centros', component: CentrosComponent },
-    { path: 'centro/:id', component: CentroComponent },
-    { path: 'centro', component: CentroComponent }
+    { path: '',  redirectTo: 'entities', pathMatch: 'full'  },
+    { path: 'entities', component: EntitiesComponent },
+    { path: 'entity/:id', component: EntityComponent },
+    { path: 'entity', component: EntityComponent }
 ];
