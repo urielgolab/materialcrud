@@ -44,8 +44,7 @@ export class ItemComponent {
         'readOnly': new FormControl(''),
         'requiered': new FormControl(''),
         'description': new FormControl(''),
-        'order': new FormControl(''),
-        // 'fechaAlta': new FormControl('', [Validators.required])
+        'order': new FormControl('')
       });
 
 

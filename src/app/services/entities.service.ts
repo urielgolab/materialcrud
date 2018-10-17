@@ -6,7 +6,6 @@ import 'rxjs/Rx';
 @Injectable()
 export class EntitiesService {
 
-  entitiesURL = "https://angularabm.firebaseio.com/entities.json";
   entityURL = "https://angularabm.firebaseio.com/entities";
 
 
@@ -15,7 +14,7 @@ export class EntitiesService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(this.entitiesURL, { headers } ).map( res => {
+    return this.http.get(this.entityURL + ".json", { headers } ).map( res => {
       return res.json();
     });
   }
@@ -33,7 +32,7 @@ export class EntitiesService {
         return res.json();
       });
     } else {
-      return this.http.post(this.entitiesURL, body, { headers }).map( res => {
+      return this.http.post(this.entityURL + ".json", body, { headers }).map( res => {
         return res.json();
       });
     }

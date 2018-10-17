@@ -25,7 +25,6 @@ export class EntityComponent {
   };
   form: FormGroup;
   id: string;
-  nuevo: boolean;
 
   constructor(
       private _entitiesService: EntitiesService,
@@ -43,7 +42,6 @@ export class EntityComponent {
       'name': new FormControl('', [Validators.required, Validators.minLength(5)]),
       'active': new FormControl(''),
       'description': new FormControl('')
-      // 'fechaAlta': new FormControl('', [Validators.required])
     });
 
     this.route.params.subscribe( params => {
@@ -59,8 +57,6 @@ export class EntityComponent {
         }
       }
     );
-
-    this.nuevo = this.id === null;
   }
 
   save() {
@@ -83,13 +79,13 @@ export class EntityComponent {
   }
 
   addItem(item?: Item, idx?: number) {
-    if (idx != null) {
+    if (idx !== undefined) {
       item.order = idx;
     }
 
     const dialogRef = this.dialog.open(ItemComponent, {
       width: '300px',
-      data: idx != null ? item : {}
+      data: idx !== undefined ? item : {}
     });
 
     dialogRef.afterClosed().subscribe(result => {

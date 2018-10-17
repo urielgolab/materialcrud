@@ -6,7 +6,6 @@ import { EntitiesService } from "../services/entities.service";
 import { MatTableDataSource } from '@angular/material';
 import { MaterialTableColumn } from '../shared/material-table/material-table.component';
 import { Subscription } from 'rxjs/Subscription';
-import { LoaderService } from '../shared/loader/loader.service';
 
 import * as Moment from 'Moment';
 
@@ -28,8 +27,7 @@ export class EntitiesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private entitiesService: EntitiesService,
-    private loaderService: LoaderService
+    private entitiesService: EntitiesService
   ) { }
 
   ngOnInit() {
@@ -39,7 +37,6 @@ export class EntitiesComponent implements OnInit {
 
   setColumns () {
     this.cols = [
-      { prop: 'key', name: '#', width: '60px'},
       { prop: 'name', name: 'Name', width: '120px'},
       { prop: 'active', name: 'Active', width: '60px', cellTransform: (cell, row) => row.activo ? "True" : "False"},
       { prop: 'dateCreated', name: 'Date created', width: '120px',
@@ -54,7 +51,6 @@ export class EntitiesComponent implements OnInit {
     this.dataSource.data = [];
     this.entities = [];
 
-    this.loaderService.push();
     this.EntitiesSub = this.entitiesService.findAll().subscribe(data => {
       for (const id in data) {
         const elem: Entity = data[id];
@@ -65,9 +61,7 @@ export class EntitiesComponent implements OnInit {
       this.dataSource.data = this.entities;
       // this.recalculate.emit();
     }, (err) => {
-      this.loaderService.pop();
     }, () => {
-      this.loaderService.pop();
     });
   }
 

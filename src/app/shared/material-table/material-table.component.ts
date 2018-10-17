@@ -26,7 +26,7 @@ export class MaterialTableComponent implements OnInit, OnDestroy, AfterViewInit,
   @Input() recalculate: EventEmitter<any>;
   @Input() sortCol: string;
   @Input() pageSize: number;
-  @Input() sortDirection?: string = 'asc';
+  @Input() sortDirection ? = 'asc';
 
 
   @Output() select = new EventEmitter();
@@ -195,7 +195,7 @@ export class MaterialTableComponent implements OnInit, OnDestroy, AfterViewInit,
     this.selected = row;
     this.select.emit(row);
   }
-  
+
   onDblClick(event: any, row) {
     event.stopImmediatePropagation();
     this.selected = row;
@@ -233,6 +233,6 @@ export class MaterialTableColumn {
   cellTemplate?: TemplateRef<any>;
   cellTransform?: any; // se pasa una funcion con parametros (celda, row)
   cellOrder?: any; // se pasa una funcion para determinar el orden. con parametros (celda, row)
-  hidden?= false; // determina si esa columna se oculta
+  hidden?: false; // determina si esa columna se oculta
 
 }

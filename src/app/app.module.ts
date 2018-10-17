@@ -20,9 +20,6 @@ import { MatPaginatorIntl } from '@angular/material';
 import {HttpModule} from '@angular/http';
 
 import { SharedModule } from './shared/shared.module';
-import { LoaderService } from './shared/loader/loader.service';
-import { LoaderModule } from './shared/loader/loader.module';
-
 
 import { EntitiesService } from "./services/entities.service";
 import { EntityComponent } from './entity/entity.component';
@@ -46,7 +43,6 @@ import { DragulaModule } from 'ng2-dragula';
     MatToolbarModule,
     MatButtonModule, MatCheckboxModule, MatIconModule, MatDatepickerModule, MatInputModule, MatDialogModule, MatListModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
-    LoaderModule.forRoot(),
     SharedModule,
     SharedModule,
     FormsModule,

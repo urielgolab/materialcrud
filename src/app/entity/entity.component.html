@@ -43,8 +43,8 @@
     </form>
     <div> 
         <button type="button" mat-stroked-button class="mat-warn" [routerLink]="['/entities']">Back</button>
-        <button  mat-raised-button class="mat-primary" (click)='save()' [disabled]="!this.form.valid">
-          {{ "nuevo" ? "Save": "Update" }}
+        <button  mat-raised-button class="mat-primary" (click)='save()' [disabled]="this.form.invalid">
+          {{ !this.id ? "Save": "Update" }}
         </button>
     </div>
   </mat-card>
