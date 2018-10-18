@@ -44,7 +44,8 @@ export class ItemComponent {
         'readOnly': new FormControl(''),
         'requiered': new FormControl(''),
         'description': new FormControl(''),
-        'order': new FormControl('')
+        'order': new FormControl(''),
+        'dateCreated': new FormControl('')
       });
 
 
