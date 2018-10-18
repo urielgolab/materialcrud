@@ -11,9 +11,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styles: []
 })
 export class ItemComponent {
-  form: FormGroup;
+  private form: FormGroup;
 
-  dataTypes: DataType[] = [
+  private dataTypes: Array<DataType> = [
       {value: '0', name: 'String'},
       {value: '1', name: 'Number'},
       {value: '2', name: 'Date'},

@@ -16,15 +16,15 @@ import { DragulaService } from 'ng2-dragula';
   styleUrls: ['./entity.component.css']
 })
 export class EntityComponent {
-  entity: Entity = {
-    name: "",
-    active: true,
-    description: "",
-    dateCreated: new Date(),
-    items: []
-  };
-  form: FormGroup;
-  id: string;
+  private entity: Entity = {
+      name: "",
+      active: true,
+      description: "",
+      dateCreated: new Date(),
+      items: []
+    };
+  private form: FormGroup;
+  private id: string;
 
   constructor(
       private _entitiesService: EntitiesService,

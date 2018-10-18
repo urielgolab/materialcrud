@@ -16,8 +16,8 @@ import * as Moment from 'Moment';
 })
 export class EntitiesComponent implements OnInit {
 
-  entities: Entity[] = [];
-  entity: Entity = null;
+  private entities: Array<Entity> = [];
+  private entity: Entity = null;
   @ViewChild('columnDelete') columnDelete: TemplateRef<any>;
   @ViewChild('columnEdit') columnEdit: TemplateRef<any>;
 
