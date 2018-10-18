@@ -17,7 +17,7 @@ export class ItemComponent {
       {value: '0', name: 'String'},
       {value: '1', name: 'Number'},
       {value: '2', name: 'Date'},
-      {value: '3', name: 'Check'}
+      {value: '3', name: 'Boolean'}
     ];
 
   private item: Item = {
@@ -54,10 +54,5 @@ export class ItemComponent {
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  save() {
-    // this.item = this.form.value;
-    // debugger;
   }
 }

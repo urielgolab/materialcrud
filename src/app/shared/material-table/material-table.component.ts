@@ -88,7 +88,7 @@ export class MaterialTableComponent implements OnInit, OnDestroy, AfterViewInit,
       };
       this.rows.sort = this.sort;
       this.rows.paginator = this.paginator;
-      this.rows.filterPredicate = this.filtrarGrilla();
+      this.rows.filterPredicate = this.filterGrid();
     }
     this.onRecalculate();
   }
@@ -96,7 +96,7 @@ export class MaterialTableComponent implements OnInit, OnDestroy, AfterViewInit,
   /**
    * modifica la funcion de filtrado original para contemplar las columnas multinivel
    */
-  private filtrarGrilla(): (data: any[], filter: string) => boolean {
+  private filterGrid(): (data: any[], filter: string) => boolean {
     return (row: any[], filter: string) => {
       const stringColumn: string[] = [];
       for (const col of this.columns) {

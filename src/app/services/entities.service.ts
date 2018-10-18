@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class EntitiesService {
 
-  entityURL = "https://angularabm.firebaseio.com/entities";
+  private entityURL = "https://angularabm.firebaseio.com/entities";
 
 
   findAll(query?: any): any {

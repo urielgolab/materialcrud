@@ -6,5 +6,5 @@ export class Entity {
     active: boolean;
     description: string;
     dateCreated?: Date;
-    items?: Item[];
+    items?: Array<Item>;
 }
