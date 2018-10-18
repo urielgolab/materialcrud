@@ -23,7 +23,6 @@ export class EntitiesComponent implements OnInit {
 
   dataSource: MatTableDataSource<Entity> = new MatTableDataSource();
   cols: MaterialTableColumn[];
-  EntitiesSub: Subscription;
 
   constructor(
     private router: Router,
@@ -51,18 +50,16 @@ export class EntitiesComponent implements OnInit {
     this.dataSource.data = [];
     this.entities = [];
 
-    this.EntitiesSub = this.entitiesService.findAll().subscribe(data => {
+    this.entitiesService.findAll().subscribe(data => {
       for (const id in data) {
         const elem: Entity = data[id];
         elem.id = id;
         this.entities.push(elem);
       }
-
       this.dataSource.data = this.entities;
-      // this.recalculate.emit();
-    }, (err) => {
-    }, () => {
-    });
+      }, (err) => {
+        console.log(err);
+      });
   }
 
   onEntitySelected(entity: Entity) {
